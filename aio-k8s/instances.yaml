@@ -1,0 +1,30 @@
+provider_config:
+  bms:
+    ssh_pwd: Juniper123
+    ssh_user: root
+    ssh_public_key: /root/.ssh/id_rsa.pub
+    ssh_private_key: /root/.ssh/id_rsa
+    ntpserver: 192.168.1.1
+    domainsuffix: local
+instances:
+  bms1:
+   provider: bms
+   roles:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
+      vrouter:
+      kubemanager:
+      k8s_master:
+      k8s_node:
+   ip: 10.13.82.35
+contrail_configuration:
+  CONTAINER_REGISTRY: opencontrailnightly
+  CONTRAIL_VERSION: ocata-master-57
+  UPGRADE_KERNEL: true
+  VROUTER_GATEWAY: 10.13.82.1
+  PHYSICAL_INTERFACE: enp0s8
+  KUBERNETES_CLUSTER_PROJECT: {}
