@@ -21,10 +21,15 @@ instances:
       k8s_master:
       k8s_node:
    ip: 10.13.82.35
+
+global_configuration:
+  CONTAINER_REGISTRY: 10.204.217.152:5000
+  REGISTRY_PRIVATE_INSECURE: True
+
 contrail_configuration:
-  CONTAINER_REGISTRY: opencontrailnightly
-  CONTRAIL_VERSION: ocata-master-57
+  KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
+  CLOUD_ORCHESTRATOR: kubernetes
   UPGRADE_KERNEL: true
   VROUTER_GATEWAY: 10.13.82.1
-  PHYSICAL_INTERFACE: enp0s8
+  PHYSICAL_INTERFACE: eth1
   KUBERNETES_CLUSTER_PROJECT: {}

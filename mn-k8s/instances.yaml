@@ -1,0 +1,72 @@
+provider_config:
+  bms:
+    ssh_pwd: c0ntrail123
+    ssh_user: root
+    ntpserver: 10.204.217.158
+    domainsuffix: englab.juniper.net
+instances:
+  bms1:
+    provider: bms
+    ip: 10.13.82.32
+    roles:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
+      k8s_master:
+      kubemanager:
+  bms2:
+    provider: bms
+    ip: 10.13.82.33
+    roles:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
+      k8s_master:
+      kubemanager:
+  bms3:
+    provider: bms
+    ip: 10.13.82.34
+    roles:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
+      k8s_master:
+      kubemanager:
+  bms4:
+    provider: bms
+    ip: 10.13.82.35
+    roles:
+      k8s_node:
+      vrouter:
+        PHYSICAL_INTERFACE: bond0
+  bms5:
+    provider: bms
+    ip: 77.77.1.31
+    roles:
+      k8s_node:
+      vrouter:
+        PHYSICAL_INTERFACE: enp2s0f1
+
+CONTAINER_REGISTRY: 10.204.217.152:5000
+REGISTRY_PRIVATE_INSECURE: True
+
+contrail_configuration:
+  KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
+  CLOUD_ORCHESTRATOR: kubernetes
+  CONTROLLER_NODES: 77.77.1.11,77.77.1.20,77.77.1.30
+  CONFIG_NODES: 77.77.1.11,77.77.1.20,77.77.1.30
+  ANALYTICS_NODES: 77.77.1.11,77.77.1.20,77.77.1.30
+  CONTRAIL_VERSION: 5.0-8
+  REGISTRY_PRIVATE_INSECURE: True
+  CONTAINER_REGISTRY: 10.204.217.152:5000
+  RABBITMQ_NODE_PORT: 5673
+  VROUTER_GATEWAY: 10.13.82.1

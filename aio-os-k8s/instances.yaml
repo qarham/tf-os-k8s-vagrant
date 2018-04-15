@@ -24,9 +24,11 @@ instances:
       k8s_node:
    ip: 10.13.82.34
 
-contrail_configuration:
+global_configuration:
   CONTAINER_REGISTRY: opencontrailnightly
-  CONTRAIL_VERSION: ocata-master-58
+  CONTRAIL_VERSION: ocata-master-62
+
+contrail_configuration:
   UPGRADE_KERNEL: true
   RABBITMQ_NODE_PORT: 5673
   AUTH_MODE: keystone
