@@ -4,7 +4,7 @@ provider_config:
     ssh_user: root
     ssh_public_key: /root/.ssh/id_rsa.pub
     ssh_private_key: /root/.ssh/id_rsa
-    ntpserver: 192.168.1.1
+    ntpserver: 0.ubuntu.pool.ntp.org
     domainsuffix: local
 instances:
   bms1:
@@ -20,14 +20,16 @@ instances:
       kubemanager:
       k8s_master:
       k8s_node:
-   ip: 10.13.82.35
+   ip: 10.1.1.100
 
 global_configuration:
-  CONTAINER_REGISTRY: 10.204.217.152:5000
+  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
   REGISTRY_PRIVATE_INSECURE: True
 
 contrail_configuration:
   KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
+  CONTRAIL_VERSION: ocata-5.0-16
+  EXTERNAL_ROUTERS: mx1:10.10.20.20,mx2:40.40.30.20
   CLOUD_ORCHESTRATOR: kubernetes
   UPGRADE_KERNEL: true
   VROUTER_GATEWAY: 10.13.82.1
