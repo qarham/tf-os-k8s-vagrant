@@ -19,7 +19,7 @@ sudo ansible-playbook -i inventory/ playbooks/configure_instances.yml
 sudo ansible-playbook -e orchestrator=kubernetes -i inventory/ playbooks/install_contrail.yml
 
 echo ******* Taint k8s Master for PODs creation ***************
-kubectl describe pods weave-scope-app-766488b5d-4blgp -n weave
+kubectl taint nodes --all node-role.kubernetes.io/master-
 
 echo ****************** Monitoring Software Installation ********
 # Weavescope will create a separate Namespace called "weave" and use NodePort use "kubectl get svc -n weave" for NodePort number
