@@ -24,11 +24,12 @@ instances:
 
 global_configuration:
   CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
+  CONTRAIL_VERSION: ocata-5.0-35
   REGISTRY_PRIVATE_INSECURE: True
 
 contrail_configuration:
   KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
-  CONTRAIL_VERSION: ocata-5.0-16
+
   EXTERNAL_ROUTERS: mx1:10.10.20.20,mx2:40.40.30.20
   CLOUD_ORCHESTRATOR: kubernetes
   UPGRADE_KERNEL: true
