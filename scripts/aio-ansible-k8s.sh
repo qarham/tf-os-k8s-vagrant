@@ -1,6 +1,6 @@
 #!/bin/bash -v 
 
-sudo yum install -y git ansible pciutils
+sudo yum install -y git ansible-2.4.2.0 pciutils
 
 # Download Contrail-Ansible-Deployer code
 sudo git clone https://github.com/Juniper/contrail-ansible-deployer.git /opt/contrail-ansible-deployer
