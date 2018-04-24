@@ -24,3 +24,5 @@ sudo curl -L git.io/scope -o /usr/bin/scope
 sudo chmod a+x /usr/bin/scope
 scope launch
 
+echo ******** Clusterbinding for K8s Dashboard ******************
+kubectl replace -f https://raw.githubusercontent.com/Juniper/contrail-helm-deployer/master/rbac/cluster-admin.yaml
