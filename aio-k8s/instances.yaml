@@ -20,7 +20,7 @@ instances:
       kubemanager:
       k8s_master:
       k8s_node:
-   ip: 10.1.1.100
+   ip: 10.13.82.35
 
 global_configuration:
   CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
