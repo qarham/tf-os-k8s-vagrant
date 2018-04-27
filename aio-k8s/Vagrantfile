@@ -19,8 +19,10 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "k8s-aio", primary: true do |aio|
-#     aio.vm.network "private_network", ip: "10.1.1.100"
+#     aio.vm.network "private_network", ip: "192.168.122.101"
     aio.vm.network "public_network", bridge: "br0", ip: "10.13.82.35"
+#    aio.vm.network "forwarded_port", guest: 8143, host: 98143, protocol: "tcp"
+#    aio.vm.network "forwarded_port", guest: 2003, host: 12003, protocol: "udp"    
 #    aio.vm.network "public_network", bridge: "br1", ip: "192.168.1.35"
 #    aio.vm.provision "shell",inline: "route add default gw 10.13.82.1"
 #    aio.vm.provision "shell",inline: "eval `route -n | awk '{ if ($8 ==\"enp0s3\" && $2 != \"0.0.0.0\") print \"route del default gw \" $2; }'`"  
