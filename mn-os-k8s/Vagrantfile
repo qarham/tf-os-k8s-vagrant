@@ -9,7 +9,6 @@ servers = YAML.load_file('servers.yaml')
 # Create boxes
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-if index == servers.size - 1  
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "contrail-ansible-deployer/playbooks/configure_instances.yml"
     ansible.inventory_path = "contrail-ansible-deployer/inventory"
