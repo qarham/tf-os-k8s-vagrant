@@ -24,8 +24,10 @@ instances:
 
 global_configuration:
   CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
-  CONTRAIL_VERSION: ocata-5.0-35
   REGISTRY_PRIVATE_INSECURE: True
+#  CONTAINER_REGISTRY: hub.juniper.net/contrail
+#  CONTAINER_REGISTRY_USERNAME: Username
+#  CONTAINER_REGISTRY_PASSWORD: password
 
 contrail_configuration:
   KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
@@ -33,6 +35,8 @@ contrail_configuration:
   EXTERNAL_ROUTERS: mx1:10.10.20.20,mx2:40.40.30.20
   CLOUD_ORCHESTRATOR: kubernetes
   UPGRADE_KERNEL: true
+  CONTRAIL_VERSION: 5.0-40
+#  CONTRAIL_VERSION: 5.0.0-0.40             ### Uncomment this like for JNPR public and GA  
   CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
   DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
   VROUTER_GATEWAY: 10.13.82.1

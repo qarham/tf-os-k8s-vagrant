@@ -25,6 +25,9 @@ echo ****************** Monitoring Software Installation ********
 # Weavescope will create a separate Namespace called "weave" and use NodePort use "kubectl get svc -n weave" for NodePort number
 kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-service-type=NodePort&k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
+#kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+#kubectl port-forward -n weave "$(kubectl get -n weave pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4040
+
 echo ******** Clusterbinding for K8s Dashboard ******************
 kubectl replace -f https://raw.githubusercontent.com/Juniper/contrail-helm-deployer/master/rbac/cluster-admin.yaml
 
