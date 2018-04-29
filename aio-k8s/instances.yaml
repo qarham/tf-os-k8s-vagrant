@@ -20,25 +20,26 @@ instances:
       kubemanager:
       k8s_master:
       k8s_node:
-   ip: 10.13.82.35
+   ip: 192.168.122.101
 
 global_configuration:
-  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
-  REGISTRY_PRIVATE_INSECURE: True
-#  CONTAINER_REGISTRY: hub.juniper.net/contrail
-#  CONTAINER_REGISTRY_USERNAME: Username
-#  CONTAINER_REGISTRY_PASSWORD: password
+  CONTAINER_REGISTRY: hub.juniper.net/contrail
+  CONTAINER_REGISTRY_USERNAME: username
+  CONTAINER_REGISTRY_PASSWORD: password
+#  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
+#  REGISTRY_PRIVATE_INSECURE: True
+#  CONTAINER_REGISTRY: opencontrailnightly
+#  CONTRAIL_VERSION: ocata-master-62
 
 contrail_configuration:
   KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
-
   EXTERNAL_ROUTERS: mx1:10.10.20.20,mx2:40.40.30.20
   CLOUD_ORCHESTRATOR: kubernetes
   UPGRADE_KERNEL: true
-  CONTRAIL_VERSION: 5.0-40
-#  CONTRAIL_VERSION: 5.0.0-0.40             ### Uncomment this like for JNPR public and GA  
+#  CONTRAIL_VERSION: 5.0-40
+  CONTRAIL_VERSION: 5.0.0-0.40  
   CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
   DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
-  VROUTER_GATEWAY: 10.13.82.1
+  VROUTER_GATEWAY: 192.168.122.1
   PHYSICAL_INTERFACE: eth1
   KUBERNETES_CLUSTER_PROJECT: {}
