@@ -20,14 +20,16 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "aio-node", primary: true do |aio|
     aio.vm.network "private_network", ip: "192.168.122.102"
-    aio.vm.network "forwarded_port", guest: 8143, host: 48143, protocol: "tcp"
-    aio.vm.network "forwarded_port", guest: 8443, host: 48443, protocol: "tcp"    
-    aio.vm.network "forwarded_port", guest: 80, host: 40080, protocol: "tcp"
-    aio.vm.network "forwarded_port", guest: 6080, host: 46080, protocol: "tcp" 
+    aio.vm.network "forwarded_port", guest: 8143, host: 48143, protocol: "tcp",
+      auto_correct: true
+    aio.vm.network "forwarded_port", guest: 8443, host: 48443, protocol: "tcp",
+      auto_correct: true    
+    aio.vm.network "forwarded_port", guest: 80, host: 40080, protocol: "tcp",
+      auto_correct: true
+    aio.vm.network "forwarded_port", guest: 6080, host: 46080, protocol: "tcp",
+      auto_correct: true 
 #    aio.vm.network "public_network", bridge: "br0", ip: "10.13.82.34"
 #    aio.vm.network "public_network", bridge: "br1", ip: "192.168.1.34"
-#    aio.vm.provision "shell",inline: "route add default gw 10.13.82.1"
-#    aio.vm.provision "shell",inline: "eval `route -n | awk '{ if ($8 ==\"enp0s3\" && $2 != \"0.0.0.0\") print \"route del default gw \" $2; }'`"  
     aio.vm.hostname = "aio-node"
   end
 end
