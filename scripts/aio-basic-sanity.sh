@@ -46,6 +46,9 @@ openstack server list
 #ip route 
 #ssh cirros@169.254.0.4
 
+#git clone https://github.com/virtualhops/k8s-demo
+#kubectl create -f k8s-demo/po-ubuntuapp.yml
+#kubectl create -f k8s-demo/rc-frontend.yml
 
 
 

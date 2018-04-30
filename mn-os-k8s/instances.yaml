@@ -61,13 +61,18 @@ contrail_configuration:
   KEYSTONE_AUTH_ADMIN_PASSWORD: contrail123
   VROUTER_GATEWAY: 192.168.1.1
   AAA_MODE: cloud-admin
-  CONTRAIL_VERSION: latest
-#  CONTRAIL_VERSION: 5.0-40
   CONTRAIL_VERSION: 5.0.0-0.40
+  CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
+  DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
   PHYSICAL_INTERFACE: eth2
   two_interface: true
 
 kolla_config:
+  customize:
+    nova.conf: |
+      [libvirt]
+      virt_type=qemu
+      cpu_mode=none
   kolla_globals:
     network_interface: "eth2"
     kolla_internal_vip_address: "192.168.1.32"

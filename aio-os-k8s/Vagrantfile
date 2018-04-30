@@ -30,6 +30,6 @@ Vagrant.configure("2") do |config|
       auto_correct: true 
 #    aio.vm.network "public_network", bridge: "br0", ip: "10.13.82.34"
 #    aio.vm.network "public_network", bridge: "br1", ip: "192.168.1.34"
-    aio.vm.hostname = "aio-node"
+    aio.vm.hostname = "os-k8s-aio"
   end
 end
