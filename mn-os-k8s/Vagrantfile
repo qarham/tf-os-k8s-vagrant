@@ -10,8 +10,7 @@ servers = YAML.load_file('servers.yaml')
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "contrail-ansible-deployer/playbooks/configure_instances.yml"
-    ansible.inventory_path = "contrail-ansible-deployer/inventory"
+    ansible.playbook = "config.yaml"
     ansible.verbose = true
   end
 

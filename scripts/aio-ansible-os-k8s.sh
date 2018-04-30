@@ -1,6 +1,6 @@
 #!/bin/bash -v 
 
-sudo yum install -y git ansible pciutils
+sudo yum install -y git ansible pciutils wget
 
 # Download Contrail-Ansible-Deployer code
 sudo git clone https://github.com/Juniper/contrail-ansible-deployer.git /opt/contrail-ansible-deployer
@@ -26,3 +26,15 @@ scope launch
 
 echo ******** Clusterbinding for K8s Dashboard ******************
 kubectl replace -f https://raw.githubusercontent.com/Juniper/contrail-helm-deployer/master/rbac/cluster-admin.yaml
+
+# If vRouter Agent did not start due to following error "ksync_memory.cc:107: void KSyncMemory::Mmap(bool): Assertion `0' failed" use following command to clean
+free -h
+echo 3 > /proc/sys/vm/drop_caches
+free -h
+
+# Other vrouter commands
+#lsmod | grep vrouter
+#modprobe vrouter
+#cd /etc/contrail/vrouter
+#docker-compose down
+#docker-compose up -d

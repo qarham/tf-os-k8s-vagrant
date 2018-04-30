@@ -43,9 +43,9 @@ instances:
 global_configuration:
   CONTAINER_REGISTRY: 10.84.5.81:5000
   REGISTRY_PRIVATE_INSECURE: True
-#  CONTAINER_REGISTRY: hub.juniper.net/contrail
-#  CONTAINER_REGISTRY_USERNAME: Username
-#  CONTAINER_REGISTRY_PASSWORD: password
+#  CONTAINER_REGISTRY: hub.juniper.net/contrail
+#  CONTAINER_REGISTRY_USERNAME: Username
+#  CONTAINER_REGISTRY_PASSWORD: password
 
 contrail_configuration:
   UPGRADE_KERNEL: true
@@ -63,8 +63,8 @@ contrail_configuration:
   AAA_MODE: cloud-admin
   CONTRAIL_VERSION: latest
 #  CONTRAIL_VERSION: 5.0-40
-#  CONTRAIL_VERSION: 5.0.0-0.40             ### Uncomment this like for JNPR public and GA  
-   PHYSICAL_INTERFACE: eth2
+  CONTRAIL_VERSION: 5.0.0-0.40
+  PHYSICAL_INTERFACE: eth2
   two_interface: true
 
 kolla_config:

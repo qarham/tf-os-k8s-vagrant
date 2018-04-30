@@ -1,6 +1,6 @@
 #!/bin/bash -v 
 
-sudo yum install -y git ansible pciutils
+sudo yum install -y git ansible pciutils wget
 
 # Download Contrail-Ansible-Deployer code
 sudo git clone https://github.com/Juniper/contrail-ansible-deployer.git /opt/contrail-ansible-deployer
@@ -23,3 +23,6 @@ sudo ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_
 sudo curl -L git.io/scope -o /usr/bin/scope
 sudo chmod a+x /usr/bin/scope
 scope launch
+
+echo ******** Clusterbinding for K8s Dashboard ******************
+kubectl replace -f https://raw.githubusercontent.com/Juniper/contrail-helm-deployer/master/rbac/cluster-admin.yaml

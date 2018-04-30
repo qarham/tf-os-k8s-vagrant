@@ -6,6 +6,8 @@ pip install python-ironicclient
 pip install python-neutronclient
 pip install python-heatclient
 
+# Check Contrail Status
+contrail-status
 
 source /etc/kolla/admin-openrc.sh
 
