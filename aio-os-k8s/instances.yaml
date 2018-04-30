@@ -35,7 +35,7 @@ global_configuration:
 
 contrail_configuration:
   UPGRADE_KERNEL: true
-  CONTRAIL_VERSION: 5.0.0-0.40  
+  CONTRAIL_VERSION: 5.0.0-0.40-ocata
   RABBITMQ_NODE_PORT: 5673
   AUTH_MODE: keystone
   KEYSTONE_AUTH_URL_VERSION: /v3
