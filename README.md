@@ -16,7 +16,8 @@ There are different deploymemt models, AIO, Multi-Node please using following li
 
 ### [AIO-K8S](./aio-k8s/README.md)
 ### [AIO-OS-K8S](./aio-os-k8s/README.md)
-
+### [MN-OS](./mn-os/README.md)
+### [MN-OS-k8s](./mn-os/README.md)
 
 ### Abbreviation
 
