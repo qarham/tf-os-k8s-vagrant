@@ -1,0 +1,8 @@
+---
+- name: initial configuration
+  hosts: all
+  sudo: yes
+
+  tasks:
+    - name: Set hostname
+      hostname: name="{{ inventory_hostname }}"

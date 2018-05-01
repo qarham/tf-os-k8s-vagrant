@@ -1,6 +1,6 @@
 # ![alt text](/images/TF.png)Tungsten Fabric All In One Kubernetes Cluster Deployment via Ansible & Vagrant
 
-![Web Console](/images/tf-k8s-ansible-main.png)
+![Web Console](/images/tf-os-k8s-ansible-main.png)
 
 ### AIO Kubernetes Clsuter Topology Diagram
 

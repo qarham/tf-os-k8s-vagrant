@@ -1,17 +1,21 @@
-# ![alt text](/images/TF.png)Tungsten Fabric OpenStack Helm Deployment via Vagrant
+# ![alt text](/images/TF.png)Tungsten Fabric OpenStack & Kubernetes Cluster Deployment via Ansible & Vagrant
 
 ![Web Console](images/tf-os-k8s-ansible-main.png)
 
 ## Tested with
 
-* CentOS: 16.04.3
-* Kernel: 4.4.0-112-generic
-* Vagrant: 2.0.1
+* CentOS: 7.4.1708
+* Kernel: 3.10.0-693.21.1.el7.x86_64
+* Vagrant: 2.0.3
 * Ansible: 2.4.2.0
 * VirtualBox: 5.2
 
+This guide will use Contrail-Ansible-Deployer repo for Contrail Microservice deployment using Vagrant. The assumption here is Host node is ready with Ansible, Vagrant and VirtualBox software installion.
 
-## [AIO-K8S](./aio-k8s/README.md)
+There are different deploymemt models, AIO, Multi-Node please using following links to select one and test the deployment.
+
+### [AIO-K8S](./aio-k8s/README.md)
+### [AIO-OS-K8S](./aio-os-k8s/README.md)
 
 
 ### Abbreviation
@@ -23,8 +27,4 @@
 - TF: Tungsten Fabric
 ### Reference
 
-* <https://github.com/Juniper/openstack-helm/blob/master/doc/source/install/multinode.rst>
-
-* <https://github.com/Juniper/contrail-helm-deployer/tree/master/doc>
-
-* <https://github.com/deepak-dt/openstack-helm-opencontail-heat>
+* <https://github.com/Juniper/contrail-ansible-deployer/wiki>
