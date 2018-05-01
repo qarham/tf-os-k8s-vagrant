@@ -1,19 +1,19 @@
 ---
-- name: osk-node01
+- name: osk8s-node01
   box: centos/7
   ram: 32768
   cpus: 4
   ip-mgmt: 10.13.82.32
   ip-control-data: 192.168.1.32
 
-- name: osk-node02
+- name: osk8s-node02
   box: centos/7
   ram: 32768
   cpus: 4
   ip-mgmt: 10.13.82.33
   ip-control-data: 192.168.1.33
 
-- name: osk-node03
+- name: osk8s-node03
   box: centos/7
   ram: 32768
   cpus: 4
