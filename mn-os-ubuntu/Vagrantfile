@@ -26,11 +26,11 @@ if Vagrant.has_plugin?("vagrant-timezone")
       srv.vm.network "public_network", bridge: "br1", ip: servers["ip-control-data"]
       srv.vm.provision "shell",inline: "route add default gw 10.13.82.1"
       srv.vm.provision "shell",inline: "eval `route -n | awk '{ if ($8 ==\"enp0s3\" && $2 != \"0.0.0.0\") print \"route del default gw \" $2; }'`"
-      srv.vm.provision "shell", path: "scripts/hosts.sh"
-      srv.vm.provision "shell", path: "scripts/install_3rd_pack.sh"
-      srv.vm.provision "shell", path: "scripts/resolve-conf.sh"
-      srv.vm.provision "shell", path: "scripts/ntp.sh" 
-      srv.vm.provision "shell", path: "scripts/enable_root_login.sh"
+      srv.vm.provision "shell", path: "../scripts/hosts.sh"
+      srv.vm.provision "shell", path: "../scripts/install_3rd_pack.sh"
+      srv.vm.provision "shell", path: "../scripts/resolve-conf.sh"
+      srv.vm.provision "shell", path: "../scripts/ntp.sh" 
+      srv.vm.provision "shell", path: "../scripts/enable_root_login.sh"
       srv.vm.hostname = servers ["name"]
 #      srv.hostmanager.enabled = true
 #      srv.hostmanager.manage_host = true
