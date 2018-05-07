@@ -48,12 +48,10 @@ instances:
       k8s_node:
       vrouter:
         PHYSICAL_INTERFACE: eth2
-
 global_configuration:
   CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
   REGISTRY_PRIVATE_INSECURE: True
   CONTRAIL_VERSION: 5.0-33
-
 contrail_configuration:
   KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
   CLOUD_ORCHESTRATOR: kubernetes

@@ -4,7 +4,7 @@ provider_config:
     ssh_user: root
     ssh_public_key: /root/.ssh/id_rsa.pub
     ssh_private_key: /root/.ssh/id_rsa
-    ntpserver: 0.ubuntu.pool.ntp.org
+    ntpserver: 66.129.255.62
     domainsuffix: local
 instances:
   bms1:
@@ -23,21 +23,21 @@ instances:
    ip: 192.168.122.101
 
 global_configuration:
-  CONTAINER_REGISTRY: hub.juniper.net/contrail
-  CONTAINER_REGISTRY_USERNAME: username
-  CONTAINER_REGISTRY_PASSWORD: password
+#  CONTAINER_REGISTRY: hub.juniper.net/contrail
+#  CONTAINER_REGISTRY_USERNAME: username
+#  CONTAINER_REGISTRY_PASSWORD: password
 #  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
 #  REGISTRY_PRIVATE_INSECURE: True
-#  CONTAINER_REGISTRY: opencontrailnightly
-#  CONTRAIL_VERSION: ocata-master-62
+  CONTAINER_REGISTRY: opencontrailnightly
 
 contrail_configuration:
   KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
   EXTERNAL_ROUTERS: mx1:10.10.20.20,mx2:40.40.30.20
   CLOUD_ORCHESTRATOR: kubernetes
   UPGRADE_KERNEL: true
-#  CONTRAIL_VERSION: 5.0-40
-  CONTRAIL_VERSION: 5.0.0-0.40  
+  CONTRAIL_VERSION: latest
+#  CONTRAIL_VERSION: 5.0.0-0.40         #Comment "latest" and uncomment this line for GA hub.juniper.net
+#  CONTRAIL_VERSION: 5.0-40     ##Comment "latest" and uncomment this line for internal registry 
   CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
   DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
   VROUTER_GATEWAY: 192.168.122.1

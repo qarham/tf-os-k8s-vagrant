@@ -5,7 +5,7 @@ provider_config:
     ssh_public_key: /root/.ssh/id_rsa.pub
     ssh_private_key: /root/.ssh/id_rsa
     nameserver: 8.8.8.8
-    ntpserver: 0.ubuntu.pool.ntp.org
+    ntpserver: 66.129.255.62
     domainsuffix: local
 
 instances:
@@ -39,13 +39,17 @@ instances:
       vrouter:
         PHYSICAL_INTERFACE: eth2
 global_configuration:
-  CONTAINER_REGISTRY: 10.84.5.81:5000
-  REGISTRY_PRIVATE_INSECURE: True
 #  CONTAINER_REGISTRY: hub.juniper.net/contrail
-#  CONTAINER_REGISTRY_USERNAME: Username
+#  CONTAINER_REGISTRY_USERNAME: username
 #  CONTAINER_REGISTRY_PASSWORD: password
+#  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
+#  REGISTRY_PRIVATE_INSECURE: True
+  CONTAINER_REGISTRY: opencontrailnightly
 contrail_configuration:
   UPGRADE_KERNEL: true
+  CONTRAIL_VERSION: latest
+#  CONTRAIL_VERSION: 5.0.0-0.40         #Comment "latest" and uncomment this line for GA hub.juniper.net
+#  CONTRAIL_VERSION: 5.0-40     ##Comment "latest" and uncomment this line for internal registry 
   RABBITMQ_NODE_PORT: 5673
   CLOUD_ORCHESTRATOR: openstack
   CONTROL_DATA_NET: 192.168.1.0/24
@@ -53,7 +57,6 @@ contrail_configuration:
   VROUTER_GATEWAY: 192.168.1.1
   IPFABRIC_SERVICE_HOST: 192.168.1.46
   AAA_MODE: cloud-admin
-  CONTRAIL_VERSION: ocata-5.0-25
   CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
   DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
 kolla_config:

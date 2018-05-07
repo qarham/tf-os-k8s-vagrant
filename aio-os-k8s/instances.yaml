@@ -25,17 +25,17 @@ instances:
    ip: 192.168.122.102
 
 global_configuration:
-  CONTAINER_REGISTRY: hub.juniper.net/contrail
-  CONTAINER_REGISTRY_USERNAME: username
-  CONTAINER_REGISTRY_PASSWORD: password
+#  CONTAINER_REGISTRY: hub.juniper.net/contrail
+#  CONTAINER_REGISTRY_USERNAME: username
+#  CONTAINER_REGISTRY_PASSWORD: password
 #  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
 #  REGISTRY_PRIVATE_INSECURE: True
-#  CONTAINER_REGISTRY: opencontrailnightly
-#  CONTRAIL_VERSION: ocata-master-62
-
+  CONTAINER_REGISTRY: opencontrailnightly
 contrail_configuration:
   UPGRADE_KERNEL: true
-  CONTRAIL_VERSION: 5.0.0-0.40-ocata
+  CONTRAIL_VERSION: latest
+#  CONTRAIL_VERSION: 5.0.0-0.40         #Comment "latest" and uncomment this line for GA hub.juniper.net
+#  CONTRAIL_VERSION: 5.0-40     ##Comment "latest" and uncomment this line for internal registry 
   RABBITMQ_NODE_PORT: 5673
   AUTH_MODE: keystone
   KEYSTONE_AUTH_URL_VERSION: /v3
@@ -45,7 +45,6 @@ contrail_configuration:
   PHYSICAL_INTERFACE: eth1
   AAA_MODE: cloud-admin
   KUBERNETES_CLUSTER_PROJECT: {}
-
 kolla_config:
   customize:
     nova.conf: |

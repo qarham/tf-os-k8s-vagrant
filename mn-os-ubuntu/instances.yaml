@@ -2,7 +2,7 @@ provider_config:
   bms:
     ssh_pwd: Juniper123
     ssh_user: root
-    ntpserver: 10.102.44.37
+    ntpserver: 66.129.255.62
     domainsuffix: local
 instances:
   bms1:
@@ -30,8 +30,17 @@ instances:
       vrouter:
          VROUTER_GATEWAY: 192.168.1.1
       openstack_compute:
+global_configuration:
+#  CONTAINER_REGISTRY: hub.juniper.net/contrail
+#  CONTAINER_REGISTRY_USERNAME: username
+#  CONTAINER_REGISTRY_PASSWORD: password
+#  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
+#  REGISTRY_PRIVATE_INSECURE: True
+  CONTAINER_REGISTRY: opencontrailnightly
 contrail_configuration:
   CONTRAIL_VERSION: latest
+#  CONTRAIL_VERSION: 5.0.0-0.40         #Comment "latest" and uncomment this line for GA hub.juniper.net
+#  CONTRAIL_VERSION: 5.0-40     ##Comment "latest" and uncomment this line for internal registry 
   CLOUD_ORCHESTRATOR: openstack
   CONTROL_DATA_NET_LIST: 192.168.1.0/24
   RABBITMQ_NODE_PORT: 5673
