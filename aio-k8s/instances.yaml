@@ -26,18 +26,18 @@ global_configuration:
 #  CONTAINER_REGISTRY: hub.juniper.net/contrail
 #  CONTAINER_REGISTRY_USERNAME: username
 #  CONTAINER_REGISTRY_PASSWORD: password
-#  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
-#  REGISTRY_PRIVATE_INSECURE: True
-  CONTAINER_REGISTRY: opencontrailnightly
+  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
+  REGISTRY_PRIVATE_INSECURE: True
+#  CONTAINER_REGISTRY: opencontrailnightly
 
 contrail_configuration:
   KUBERNETES_PUBLIC_FIP_POOL: {'project': 'default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}
   EXTERNAL_ROUTERS: mx1:10.10.20.20,mx2:40.40.30.20
   CLOUD_ORCHESTRATOR: kubernetes
   UPGRADE_KERNEL: true
-  CONTRAIL_VERSION: latest
-#  CONTRAIL_VERSION: 5.0.0-0.40         #Comment "latest" and uncomment this line for GA hub.juniper.net
-#  CONTRAIL_VERSION: 5.0-40     ##Comment "latest" and uncomment this line for internal registry 
+#  CONTRAIL_VERSION: latest          #Comment "5.0-XY" and uncomment this line for DockerHub opencontrailnightly 
+#  CONTRAIL_VERSION: 5.0.0-0.40      #Comment "5.0-XY" and uncomment this line for GA hub.juniper.net
+  CONTRAIL_VERSION: 5.0-51 
   CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
   DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
   VROUTER_GATEWAY: 192.168.122.1
