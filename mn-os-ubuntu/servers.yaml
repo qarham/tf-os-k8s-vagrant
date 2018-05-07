@@ -1,0 +1,21 @@
+---
+- name: os-node01
+  box: qarham/ubuntu-1604-250G
+  ram: 32768
+  cpus: 4
+  ip-mgmt: 10.13.82.32
+  ip-control-data: 192.168.1.32
+
+- name: os-node02
+  box: qarham/ubuntu-1604-250G
+  ram: 32768
+  cpus: 4
+  ip-mgmt: 10.13.82.33
+  ip-control-data: 192.168.1.33
+
+- name: os-node03
+  box: qarham/ubuntu-1604-250G
+  ram: 32768
+  cpus: 4
+  ip-mgmt: 10.13.82.34
+  ip-control-data: 192.168.1.34
