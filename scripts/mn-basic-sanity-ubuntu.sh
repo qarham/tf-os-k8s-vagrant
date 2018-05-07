@@ -1,10 +1,11 @@
 #!/bin/bash -v 
 
-yum install -y wget gcc python-devel
+apt-get install -y wget gcc python-devel
 pip install python-openstackclient
 pip install python-ironicclient
 pip install python-neutronclient
 pip install python-heatclient
+pip install --upgrade pip
 
 # Check Contrail Status
 contrail-status
@@ -37,7 +38,14 @@ openstack subnet create --subnet-range 172.16.1.0/24 --network MGMT-VN MGMT-VN-s
 
 openstack server create --flavor m1.tiny --image 'cirros2' \
     --nic net-id=MGMT-VN \
+    --availability-zone nova:os-node02 \
 Test-01
+
+openstack server create --flavor m1.tiny --image 'cirros2' \
+    --nic net-id=MGMT-VN \
+    --availability-zone nova:os-node03 \
+Test-02
+
 
 sleep 60
 openstack server list

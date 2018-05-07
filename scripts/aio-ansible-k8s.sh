@@ -2,9 +2,10 @@
 
 sudo yum install -y git ansible-2.4.2.0 pciutils wget
 
-# Download Contrail-Ansible-Deployer code
-# git clone -b R5.0 https://github.com/Juniper/contrail-ansible-deployer /opt/contrail-ansible-deployer
-sudo git clone https://github.com/Juniper/contrail-ansible-deployer.git /opt/contrail-ansible-deployer
+# Download Contrail-Ansible-Deployer code 1st command is for 5.0 GA
+sudo git clone -b R5.0 https://github.com/Juniper/contrail-ansible-deployer /opt/contrail-ansible-deployer
+
+# sudo git clone https://github.com/Juniper/contrail-ansible-deployer.git /opt/contrail-ansible-deployer
 
 export BASE_DIR=/opt
 export OC_PATH=${BASE_DIR}/contrail-ansible-deployer
