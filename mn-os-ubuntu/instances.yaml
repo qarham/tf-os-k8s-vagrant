@@ -40,6 +40,8 @@ contrail_configuration:
   KEYSTONE_AUTH_HOST: 192.168.1.32
   KEYSTONE_AUTH_URL_VERSION: /v3
   ENCAP_PRIORITY: "MPLSoUDP,MPLSoGRE,VXLAN"
+  CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 20 
+  DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 20
 kolla_config:
   customize:
     nova.conf: |
