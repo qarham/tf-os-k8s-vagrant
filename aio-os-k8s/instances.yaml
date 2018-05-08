@@ -43,6 +43,8 @@ contrail_configuration:
   CLOUD_ORCHESTRATOR: openstack
   VROUTER_GATEWAY: 192.168.122.1
   PHYSICAL_INTERFACE: eth1
+  CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
+  DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
   AAA_MODE: cloud-admin
   KUBERNETES_CLUSTER_PROJECT: {}
 kolla_config:

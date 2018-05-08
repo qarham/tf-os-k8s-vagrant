@@ -1,8 +1,10 @@
+CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
+REGISTRY_PRIVATE_INSECURE: True
 provider_config:
   bms:
     ssh_pwd: Juniper123
     ssh_user: root
-    ntpserver: 66.129.255.62
+    ntpserver: 10.102.44.37
     domainsuffix: local
 instances:
   bms1:
@@ -30,17 +32,8 @@ instances:
       vrouter:
          VROUTER_GATEWAY: 192.168.1.1
       openstack_compute:
-global_configuration:
-#  CONTAINER_REGISTRY: hub.juniper.net/contrail
-#  CONTAINER_REGISTRY_USERNAME: username
-#  CONTAINER_REGISTRY_PASSWORD: password
-  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
-  REGISTRY_PRIVATE_INSECURE: True
-#  CONTAINER_REGISTRY: opencontrailnightly
 contrail_configuration:
-#  CONTRAIL_VERSION: latest          #Comment "5.0-XY" and uncomment this line for DockerHub opencontrailnightly 
-#  CONTRAIL_VERSION: 5.0.0-0.40      #Comment "5.0-XY" and uncomment this line for GA hub.juniper.net
-  CONTRAIL_VERSION: 5.0-51 
+  CONTRAIL_VERSION: 5.0-51
   CLOUD_ORCHESTRATOR: openstack
   CONTROL_DATA_NET_LIST: 192.168.1.0/24
   RABBITMQ_NODE_PORT: 5673
@@ -49,8 +42,6 @@ contrail_configuration:
   KEYSTONE_AUTH_HOST: 192.168.1.32
   KEYSTONE_AUTH_URL_VERSION: /v3
   ENCAP_PRIORITY: "MPLSoUDP,MPLSoGRE,VXLAN"
-  CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 20 
-  DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 20
 kolla_config:
   customize:
     nova.conf: |
