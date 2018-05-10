@@ -3,19 +3,19 @@
   box: centos/7
   ram: 32768
   cpus: 4
-  ip-mgmt: 10.13.82.32
-  ip-control-data: 192.168.1.32
+  ip-mgmt: 10.13.82.237
+  ip-control-data: 192.168.1.237
 
 - name: osk8s-node02
   box: centos/7
   ram: 32768
   cpus: 4
-  ip-mgmt: 10.13.82.33
-  ip-control-data: 192.168.1.33
+  ip-mgmt: 10.13.82.238
+  ip-control-data: 192.168.1.238
 
 - name: osk8s-node03
   box: centos/7
   ram: 32768
   cpus: 4
-  ip-mgmt: 10.13.82.34
-  ip-control-data: 192.168.1.34
+  ip-mgmt: 10.13.82.239
+  ip-control-data: 192.168.1.239
