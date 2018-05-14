@@ -48,6 +48,6 @@ if Vagrant.has_plugin?("vagrant-timezone")
   end
     config.vm.define "os-node01" do |web|
       web.vm.provision "Install-Contrail", run: "never", type:  "shell", 
-        path: "../scripts/mn-ansible-os-ubuntu.sh"
+        path: "../scripts/mn-ansible-os-k8s.sh"
     end
 end
