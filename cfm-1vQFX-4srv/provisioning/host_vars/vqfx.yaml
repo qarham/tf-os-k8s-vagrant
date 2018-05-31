@@ -2,14 +2,19 @@
 interfaces:
     - name: xe-0/0/0
       description: "connect srv1"
+      vlan_id: 1
     - name: xe-0/0/1
       description: "connect srv2"
+      vlan_id: 1
     - name: xe-0/0/2
       description: "connect srv3"
+       vlan_id: 1
     - name: xe-0/0/3
       description: "connect srv4"
+      vlan_id: 1
     - name: xe-0/0/4
       description: "connect bms"
+      vlan_id: 1
 
 irb_interfaces:
     - name: irb
