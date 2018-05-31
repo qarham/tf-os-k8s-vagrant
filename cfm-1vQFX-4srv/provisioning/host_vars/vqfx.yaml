@@ -10,3 +10,9 @@ interfaces:
       description: "connect srv4"
     - name: xe-0/0/4
       description: "connect bms"
+
+irb_interfaces:
+    - name: irb
+      description: "vRouter Gateway for all srvs"
+      ip: 172.16.1.254
+      
