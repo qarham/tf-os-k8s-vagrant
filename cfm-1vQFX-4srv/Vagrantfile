@@ -51,7 +51,7 @@ $subnet = "10.13.82"
         config.vm.define srv_name do |srv|
             srv.vm.box = "centos/7"
             srv.vm.hostname = "srv#{id}"
-            srv.vm.network "public_network", bridge: "br0", ip:"#{$subnet}.#{id+236}"
+            srv.vm.network "public_network", bridge: "br0", ip:"#{$subnet}.#{id+31}"
             srv.vm.network 'private_network', ip: "172.16.1.#{id}", nic_type: '82540EM', virtualbox__intnet: "seg#{id}"
             srv.ssh.insert_key = true
             srv.vm.provision "shell", path: "scripts/enable_root_login.sh"
