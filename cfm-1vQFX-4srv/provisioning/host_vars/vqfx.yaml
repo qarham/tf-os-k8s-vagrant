@@ -8,7 +8,7 @@ interfaces:
       vlan_id: 1
     - name: xe-0/0/2
       description: "connect srv3"
-       vlan_id: 1
+      vlan_id: 1
     - name: xe-0/0/3
       description: "connect srv4"
       vlan_id: 1
