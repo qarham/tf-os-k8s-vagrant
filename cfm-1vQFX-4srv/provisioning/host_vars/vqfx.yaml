@@ -19,5 +19,5 @@ interfaces:
 irb_interfaces:
     - name: irb
       description: "vRouter Gateway for all srvs"
-      ip: 172.16.1.254
+      ip: 172.16.1.1
       
