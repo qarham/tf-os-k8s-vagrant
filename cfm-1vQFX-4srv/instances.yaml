@@ -1,76 +1,62 @@
-provider_config:
-  bms:
-    ssh_pwd: Juniper123
-    ssh_user: root
-    ssh_public_key: /root/.ssh/id_rsa.pub
-    ssh_private_key: /root/.ssh/id_rsa
-    nameserver: 8.8.8.8
-    ntpserver: 66.129.255.62
-    domainsuffix: local
-instances:
-  bms1:
-    provider: bms
-    ip: 10.13.82.237
-    roles:
-      config_database:
-      config:
-      control:
-      analytics_database:
-      analytics:
-      webui:
-      k8s_master:
-      kubemanager:
-      openstack:
-      vrouter:
-       TSN_EVPN_MODE: True
-       PHYSICAL_INTERFACE: eth2
-       VROUTER_GATEWAY: 172.16.1.1
-  bms2:
-    provider: bms
-    ip: 10.13.82.238
-    roles:
-      k8s_node:
-      openstack_compute:
-      vrouter:
-        PHYSICAL_INTERFACE: eth2
-        VROUTER_GATEWAY: 172.16.2.1
-  bms3:
-    provider: bms
-    ip: 10.13.82.239
-    roles:
-      k8s_node:
-      openstack_compute:
-      vrouter:
-        PHYSICAL_INTERFACE: eth2
-        VROUTER_GATEWAY: 172.16.3.1
 global_configuration:
-#  CONTAINER_REGISTRY: hub.juniper.net/contrail
-#  CONTAINER_REGISTRY_USERNAME: username
-#  CONTAINER_REGISTRY_PASSWORD: password
   CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
   REGISTRY_PRIVATE_INSECURE: True
-#  CONTAINER_REGISTRY: opencontrailnightly
+provider_config:
+  bms:
+    ssh_user: root
+    ssh_pwd: Juniper123
+    ntp_server: 172.21.200.60
+instances:
+  srv1:
+    ip: 10.87.65.71
+    provider: bms
+    ssh_pwd: Juniper123
+    roles:
+      config:
+      config_database:
+      control:
+      webui:
+      analytics:
+      analytics_database:
+      openstack_control:
+      openstack_network:
+      openstack_storage:
+      openstack_monitoring:
+  srv2:
+    ip: 10.87.65.72
+    provider: bms
+    roles:
+    ssh_pwd: Juniper123
+      openstack_compute:
+      vrouter:
+        VROUTER_GATEWAY: 172.16.1.1
+  srv3:
+    ip: 10.87.65.73
+    provider: bms
+    roles:
+      openstack_compute:
+      vrouter:
+        VROUTER_GATEWAY: 172.16.1.1
+  srv4:
+    ip: 10.87.65.74
+    provider: bms
+    roles:
+      vrouter:
+        TSN_EVPN_MODE: true
+        VROUTER_GATEWAY: 172.16.1.1
 contrail_configuration:
-  UPGRADE_KERNEL: true
-#  CONTRAIL_VERSION: latest          #Comment "5.0-XY" and uncomment this line for DockerHub opencontrailnightly 
-#  CONTRAIL_VERSION: 5.0.0-0.40      #Comment "5.0-XY" and uncomment this line for GA hub.juniper.net
-  CONTRAIL_VERSION: ocata-5.0-51 
-  RABBITMQ_NODE_PORT: 5673
+  CONTRAIL_VERSION: ocata-5.0-82
   CLOUD_ORCHESTRATOR: openstack
-  METADATA_PROXY_SECRET: contrail123
-  CONTROLLER_NODES: 10.13.82.237
-  CONTROL_NODES: 172.16.1.2
-  OPENSTACK_NODES: 172.16.1.2
-  TSN_NODES: 172.16.1.2
-  ENCAP_PRIORITY: "VXLAN,MPLSoUDP,MPLSoGRE"
+  RABBITMQ_NODE_PORT: 5673
+  VROUTER_GATEWAY: 172.16.1.1
+  ENCAP_PRIORITY: VXLAN,MPLSoUDP,MPLSoGRE
   AUTH_MODE: keystone
-  KEYSTONE_AUTH_HOST: 172.16.1.2
+  KEYSTONE_AUTH_HOST: 10.87.65.71
   KEYSTONE_AUTH_URL_VERSION: /v3
-  KEYSTONE_AUTH_ADMIN_PASSWORD: contrail123
-  AAA_MODE: cloud-admin
-  CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
-  DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
-  two_interface: true
+  CONTROLLER_NODES: 10.87.65.71
+  CONTROL_NODES: 172.16.1.101
+  CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 100
+  DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 100
 kolla_config:
   customize:
     nova.conf: |
@@ -78,14 +64,11 @@ kolla_config:
       virt_type=qemu
       cpu_mode=none
   kolla_globals:
-    network_interface: "eth2"
-    kolla_internal_vip_address: 172.16.1.240
-    kolla_external_vip_address: 10.13.82.240
-    contrail_api_interface_address: 172.16.1.2
-    enable_haproxy: "yes"
-    enable_ironic: "no"
-    enable_swift: "no"
-    keepalived_virtual_router_id: 146
+    openstack_release: ocata
+    keepalived_virtual_router_id: "66"
+    enable_haproxy: yes
+    contrail_api_interface_address: 10.87.65.71
+    kolla_internal_vip_address: 10.87.65.75
+    kolla_external_vip_address: 10.87.65.75
   kolla_passwords:
-    metadata_secret: contrail123
     keystone_admin_password: contrail123
