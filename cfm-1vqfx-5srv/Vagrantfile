@@ -45,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ## Servers         #######
     ##########################
 # Defaults for config options defined in CONFIG
-$subnet_mgmt = "10.13.82"
+$subnet_mgmt = "10.87.65"
 $subnet_ctrl_data= "172.16.1"
     (1..4).each do |id|
        srv_name = ( "srv" + id.to_s ).to_sym
