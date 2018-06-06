@@ -1,15 +1,19 @@
-## ![alt text](/images/cfm-top.png) Contrail Fabric Manager Testbed setup (1vQFX and 5 VMs) for CFM Testing
+# ![alt text](/images/cfm-top.png) Contrail Fabric Manager Testbed setup (1vQFX and 5 VMs) for CFM Testing
 
 
 ![Web Console](/images/cfm-1vqfx-5srv-topology.png)
 
 
-The main code of this repository is taken from [Juniper/vqfx10k-vagrant](https://github.com/Juniper/vqfx10k-vagrant) to create a Testbed for CFM testing. Using this repo you can create a topology higglighted in the above diagram for basic CFM testing.
+The main code of this repository is taken from [Juniper/vqfx10k-vagrant](https://github.com/Juniper/vqfx10k-vagrant) to create a Testbed for CFM testing. Using this repo you can create a topology captured in the above diagram for basic CFM testing.
 
 * 1 vQFX 10K
-* 5 VMs CentOS 7.5
+* 5 VMs CentOS 7.5 
+  * 1 Contrail-Command
+  * 1 OpenStack/Contrail Controller
+  * 1 CSN "Contrail Service Node"
+  * 2 Compute nodes
  
-Prerequisites: A host machine with Ubuntu/CentOS OS preinstalled with Vagrant & VirtualBox SW.
+**Prerequisites**: A host machine with Ubuntu/CentOS OS preinstalled with Vagrant & VirtualBox SW.
 
 
 ```bash
@@ -26,7 +30,7 @@ $subnet_mgmt = "10.87.65"
 $subnet_ctrl_data= "172.16.1"
 ```
 
-### Refence
+### References
 
 * <https://github.com/Juniper/contrail-ansible-deployer/wiki>
 * <https://github.com/Juniper/vqfx10k-vagrant>
