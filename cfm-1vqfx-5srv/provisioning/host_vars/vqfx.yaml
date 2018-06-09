@@ -16,8 +16,11 @@ interfaces:
       description: "connect bms"
       vlan_id: 1
 
-irb_interfaces:
+inet_interfaces:
     - name: irb
       description: "vRouter Gateway for all srvs"
-      ip: 172.16.1.1
+      ip: 172.16.1.1/24
+    - name: lo0
+      description: "vqfx Loopback"
+      ip: 1.1.1.1/32      
       

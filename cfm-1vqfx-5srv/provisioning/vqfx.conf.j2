@@ -57,12 +57,12 @@ interfaces {
         }
     }
 {% endfor %}
-{% for interface in irb_interfaces %}
+{% for interface in inet_interfaces %}
     {{ interface.name }} {
         description "{{ interface.description }}";
         unit 0 {
             family inet {
-                address {{ interface.ip }}/24;
+                address {{ interface.ip }};
                 }
             }
         }
