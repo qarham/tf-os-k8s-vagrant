@@ -1,5 +1,5 @@
 global_configuration:
-  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
+  CONTAINER_REGISTRY: 10.84.5.81:5000
   REGISTRY_PRIVATE_INSECURE: True
 provider_config:
   bms:

@@ -13,7 +13,17 @@ The main code of this repository is taken from [Juniper/vqfx10k-vagrant](https:/
   * 1 CSN "Contrail Service Node"
   * 2 Compute nodes
  
-**Prerequisites**: A host machine with Ubuntu/CentOS OS preinstalled with Vagrant & VirtualBox SW.
+**Prerequisites**: A host machine with Ubuntu/CentOS OS preinstalled with Vagrant & VirtualBox SW. VQFX10k boxes are added to the vagrant host using following steps:
+
+```bash
+# Download vqfx re and pfe boxes from following link
+wget http://10.84.5.120/cs-shared/images/vagrant-boxes/vqfx-re-virtualbox.box
+wget http://10.84.5.120/cs-shared/images/vagrant-boxes/vqfx10k-pfe-virtualbox.box 
+
+# Add vagrant boxes using following command
+vagrant box add --name juniper/vqfx10k-re /var/tmp/vqfx-re-virtualbox.box
+vagrant box add --name juniper/vqfx10k-pfe /var/tmp/vqfx10k-pfe-virtualbox.box
+ ```
 
 
 ```bash

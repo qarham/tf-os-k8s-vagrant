@@ -50,9 +50,9 @@ $subnet_ctrl_data= "172.16.1"
     (1..5).each do |id|
        srv_name = ( "srv" + id.to_s ).to_sym
         config.vm.define srv_name do |srv|
-            srv.vm.box = "qarham/CentOS7.5-250GB"
+            srv.vm.box = "qarham/CentOS7.5-350GB"
             srv.vm.hostname = "srv#{id}"
-            srv.vm.network "public_network", bridge: "br0", ip:"#{$subnet_mgmt}.#{id+31}"
+            srv.vm.network "public_network", bridge: "br0", ip:"#{$subnet_mgmt}.#{id+70}"
             srv.vm.network 'private_network', ip: "#{$subnet_ctrl_data}.#{id+100}", nic_type: '82540EM', virtualbox__intnet: "seg#{id}"
             srv.ssh.insert_key = true
             srv.vm.provision "shell", path: "scripts/enable_root_login.sh"
