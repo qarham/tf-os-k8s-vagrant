@@ -17,7 +17,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         # DO NOT REMOVE / NO VMtools installed
         vqfxpfe.vm.synced_folder '.', '/vagrant', disabled: true
-        vqfxpfe.vm.network 'private_network', auto_config: false, nic_type: '82540EM', virtualbox__intnet: "vqfx_internal"
+        vqfxpfe.vm.network 'private_network',
+          auto_config: false,
+          nic_type: '82540EM',
+          virtualbox__intnet: "vqfx_internal"
     end
 
     ##########################
@@ -32,12 +35,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vqfx.vm.synced_folder '.', '/vagrant', disabled: true
 
         # Management Ports
-        vqfx.vm.network 'private_network', auto_config: false, nic_type: '82540EM', virtualbox__intnet: "vqfx_internal"
-        vqfx.vm.network 'private_network', auto_config: false, nic_type: '82540EM', virtualbox__intnet: "reserved-bridge"
+        vqfx.vm.network 'private_network',
+          auto_config: false,
+          nic_type: '82540EM',
+          virtualbox__intnet: "vqfx_internal"
+        vqfx.vm.network 'private_network',
+          auto_config: false,
+          nic_type: '82540EM',
+          virtualbox__intnet: "reserved-bridge"
 
         ## Dataplane ports
         (1..8).each do |seg_id|
-           vqfx.vm.network 'private_network', auto_config: false, nic_type: '82540EM', virtualbox__intnet: "seg#{seg_id}"
+           vqfx.vm.network 'private_network',
+             auto_config: false,
+             nic_type: '82540EM',
+             virtualbox__intnet: "seg#{seg_id}"
         end
     end
 
@@ -52,15 +64,23 @@ $subnet_ctrl_data= "172.16.1"
         config.vm.define srv_name do |srv|
             srv.vm.box = "qarham/CentOS7.5-350GB"
             srv.vm.hostname = "srv#{id}"
-            srv.vm.network "public_network", bridge: "br0", ip:"#{$subnet_mgmt}.#{id+70}"
-            srv.vm.network 'private_network', ip: "#{$subnet_ctrl_data}.#{id+100}", nic_type: '82540EM', virtualbox__intnet: "seg#{id}"
+            srv.vm.network "public_network",
+              bridge: "br0",
+              ip:"#{$subnet_mgmt}.#{id+70}",
+              netmask:"255.255.255.128"
+            srv.vm.network 'private_network',
+              ip: "#{$subnet_ctrl_data}.#{id+100}",
+              nic_type: '82540EM',
+              virtualbox__intnet: "seg#{id}"
             srv.ssh.insert_key = true
             srv.vm.provision "shell", path: "scripts/enable_root_login.sh"
             srv.vm.provision "shell", path: "scripts/set-centos-gw.sh"
             srv.vm.provision "shell", path: "scripts/ntp.sh"
-            srv.vm.provision "file", source: "instances.yaml", destination: "/home/vagrant/instances.yaml"
+            srv.vm.provision "file",
+              source: "instances.yaml",
+              destination: "/home/vagrant/instances.yaml"
             srv.vm.provision "shell",
-               inline: "sudo route add -net 172.16.0.0 netmask 255.255.0.0 gw 172.16.1.1"
+               inline: "sudo ip route add 172.16.0.0/16 via 172.16.1.1"
         config.vm.provider :virtualbox do |vb|
             vb.customize ["modifyvm", :id, "--memory", "32768", "--cpus", "4"]
           end
