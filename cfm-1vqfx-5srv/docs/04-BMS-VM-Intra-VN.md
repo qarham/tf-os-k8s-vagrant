@@ -133,12 +133,19 @@ bound to 10.1.1.4 -- renewal in 2147483646 seconds.
 PING 10.1.1.3 (10.1.1.3) 56(84) bytes of data.
 64 bytes from 10.1.1.3: icmp_seq=1 ttl=64 time=502 ms
 64 bytes from 10.1.1.3: icmp_seq=2 ttl=64 time=185 ms
-64 bytes from 10.1.1.3: icmp_seq=3 ttl=64 time=101 ms
-^C
---- 10.1.1.3 ping statistics ---
+
 3 packets transmitted, 3 received, 0% packet loss, time 2005ms
 rtt min/avg/max/mdev = 101.738/263.033/502.330/172.591 ms
-[root@srv4 vagrant]#
+
+# DNS servcie is also provided by Contrail Service Node and you can test Contrail DNS reachability by pinging DNS IP 10.1.1.2
+[root@srv4 vagrant]#ping 10.1.1.2
+PING 10.1.1.2 (10.1.1.2) 56(84) bytes of data.
+64 bytes from 10.1.1.2: icmp_seq=1 ttl=64 time=102 ms
+64 bytes from 10.1.1.2: icmp_seq=2 ttl=64 time=101 ms
+
+--- 10.1.1.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1028ms
+rtt min/avg/max/mdev = 101.908/102.239/102.571/0.460 ms
 
  ```
 
@@ -179,7 +186,30 @@ default-switch.evpn.0: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
   ```
 
 
-## 
+### Other Use Cases
+
+Also tested two BMS connected via same VN for that you need another BMS connected to vqfx.
+
+
+## Tips
+
+Other useful commands:
+
+```bash
+show bgp summary
+
+show route advertising-protocol bgp 172.16.1.101
+
+show route receive-protocol bgp 172.16.1.101
+
+show ethernet-switching table
+
+show evpn database
+
+show interfaces vtep
+
+ ```
+
 
 
 ### References
