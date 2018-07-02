@@ -107,6 +107,44 @@ kolla_config:
 
  ```
 
+## 11. Compute Node QEMU (hypervisor/emulator) change if your Host does not support KVM HW virtualization (Nested mode)
+
+Note: You usually need that for AWS setup which does not support HW virtualization. Your VM instance creation will fail and you have to make following changes in "nova-compute" before creating the workload.
+
+
+```bash
+vi /etc/kolla/nova-compute/nova.conf
+
+# Add last two line under [libvirt] section 
+[libvirt]
+connection_uri = qemu+tcp://10.87.65.72/system
+virt_type=qemu
+cpu_mode=none
+
+# After making changes restart "nova_compute" conatiner on the compute
+docker restart nova_compute
+```
+
+## 12. Basic Sanity Check
+
+To make sure Cluster provisioning is successful and no issue let's create some work load using a simple basic sanity script "basic-sanity-test.sh".
+
+This script will perform following actions:
+* install OpenStack client 
+* Download and Add cirros images
+* Create VM flavors
+* Create TWO VNs VN01: 10.1.1.0/24 & VN02: 20.1.1.0/24
+* Instantiate one VM in each VN (VN01 & VN02)
+
+```bash
+wget https://raw.githubusercontent.com/qarham/tf-os-k8s-vagrant/master/cfm-1vqfx-5srv/scripts/basic-sanity-test.sh
+
+chmod +x basic-sanity-test.sh
+
+./basic-sanity-test.sh
+
+ ```
+
 ## Other Tips
 
 In case provisioning fail for Contrail install and you would like to run ansible provisioning manually you can use following command
