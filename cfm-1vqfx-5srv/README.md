@@ -40,6 +40,15 @@ $subnet_mgmt = "10.87.65"
 $subnet_ctrl_data= "172.16.1"
 ```
 
+* Reset vQFX config to baseline
+
+During CFM different use-case testing you might need to reset vQFX config to baseline and remove all groups config, you can use following command to do that.
+
+```bash
+vagrant provision --provision-with ansible vqfx
+ ```
+
+
 ### References
 
 * <https://github.com/Juniper/contrail-ansible-deployer/wiki>
