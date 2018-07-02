@@ -33,7 +33,7 @@
 
 ## 8. Cluster Summary
 
-![Clsuter Provisioning](/cfm-1vqfx-5srv/docs/images/cluster-Summary.png)
+![Clsuter Provisioning](/cfm-1vqfx-5srv/docs/images/Cluster-Summary.png)
 
 ## 9. Cluster Summary
 
