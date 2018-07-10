@@ -1,5 +1,8 @@
 # Provisioning of Contrail Cloud Clsuter via Contrail Command UI
 
+***URL for Contrail Command GUI Access***   https://<contrail_command_node_IP>:9091>
+
+Username/Password:   admin/contrail123
 
 ## 1. Add Servers
 
@@ -13,11 +16,11 @@
 
 ![Clsuter Provisioning](/cfm-1vqfx-5srv/docs/images/Create-Cluster.png)
 
-## 4. Add Contrail Controll Node
+## 4. Add Contrail Control Node
 
 ![Clsuter Provisioning](/cfm-1vqfx-5srv/docs/images/Add-Contrail-Control-Node.png)
 
-## 5. Add OpenStack Controll Node (Orchestration)
+## 5. Add OpenStack Control Node (Orchestration)
 
 ![Clsuter Provisioning](/cfm-1vqfx-5srv/docs/images/Add-OpenStack-Control-Node.png)
 
