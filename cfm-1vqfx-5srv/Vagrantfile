@@ -3,6 +3,13 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+libx = File.expand_path('../lib', __dir__)
+$LOAD_PATH.unshift(libx) unless $LOAD_PATH.include?(libx)
+
+require 'config'
+cf   = Config.new('topo.yaml')
+puts("Provisioning: #{cf.version}")
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     re_name  = "vqfx"
@@ -56,26 +63,31 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ##########################
     ## Servers         #######
     ##########################
-# Defaults for config options defined in CONFIG
-$subnet_mgmt = "10.87.65"
-$subnet_ctrl_data= "172.16.1"
+    # Defaults for config options defined in CONFIG
+    # $subnet_mgmt = "10.87.65"
+    $subnet_ctrl_data= "172.16.1"
     (1..5).each do |id|
        srv_name = ( "srv" + id.to_s ).to_sym
         config.vm.define srv_name do |srv|
             srv.vm.box = "qarham/CentOS7.5-350GB"
             srv.vm.hostname = "srv#{id}"
             srv.vm.network "public_network",
-              bridge: "br0",
-              ip:"#{$subnet_mgmt}.#{id+70}",
-              netmask:"255.255.255.128"
+              bridge:  "br0",
+              ip:       cf.get_next_addr,
+              netmask: "255.255.255.128"
             srv.vm.network 'private_network',
               ip: "#{$subnet_ctrl_data}.#{id+100}",
               nic_type: '82540EM',
               virtualbox__intnet: "seg#{id}"
             srv.ssh.insert_key = true
-            srv.vm.provision "shell", path: "scripts/enable_root_login.sh"
-            srv.vm.provision "shell", path: "scripts/set-centos-gw.sh"
-            srv.vm.provision "shell", path: "scripts/ntp.sh"
+            srv.vm.provision "shell", path: "../scripts/enable_root_login.sh"
+            srv.vm.provision "shell",
+              path: "../scripts/set-centos-gw.sh",
+              args: [ "gateway", cf.get_default_gw ]
+            srv.vm.provision "shell", path: "../scripts/dns.sh",
+              args: cf.get_dns_entries.join(' ')
+            srv.vm.provision "shell", path: "../scripts/install-net-tools.sh"
+            srv.vm.provision "shell", path: "../scripts/ntp.sh"
             srv.vm.provision "file",
               source: "instances.yaml",
               destination: "/home/vagrant/instances.yaml"
