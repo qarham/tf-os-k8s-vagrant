@@ -3,14 +3,14 @@ global_configuration:
   REGISTRY_PRIVATE_INSECURE: True
 provider_config:
   bms:
-    ssh_user: root
-    ssh_pwd: Juniper123
+    ssh_user:   <srv5.user>
+    ssh_pwd: 	<srv5.pass>
     ntp_server: 172.21.200.60
 instances:
   srv1:
-    ip: 10.87.65.71
+    ip:       <srv1.addr>
     provider: bms
-    ssh_pwd: Juniper123
+    ssh_pwd:  <srv1.pass>
     roles:
       config:
       config_database:
@@ -23,22 +23,22 @@ instances:
       openstack_storage:
       openstack_monitoring:
   srv2:
-    ip: 10.87.65.72
+    ip:       <srv2.addr>
     provider: bms
+    ssh_pwd:  <srv2.pass>
     roles:
-    ssh_pwd: Juniper123
       openstack_compute:
       vrouter:
         VROUTER_GATEWAY: 172.16.1.1
   srv3:
-    ip: 10.87.65.73
+    ip:       <srv3.addr>
     provider: bms
     roles:
       openstack_compute:
       vrouter:
         VROUTER_GATEWAY: 172.16.1.1
   srv4:
-    ip: 10.87.65.74
+    ip:       <srv4.addr>
     provider: bms
     roles:
       vrouter:
@@ -51,9 +51,9 @@ contrail_configuration:
   VROUTER_GATEWAY: 172.16.1.1
   ENCAP_PRIORITY: VXLAN,MPLSoUDP,MPLSoGRE
   AUTH_MODE: keystone
-  KEYSTONE_AUTH_HOST: 10.87.65.71
+  KEYSTONE_AUTH_HOST: <srv1.addr>
   KEYSTONE_AUTH_URL_VERSION: /v3
-  CONTROLLER_NODES: 10.87.65.71
+  CONTROLLER_NODES: <srv1.addr>
   CONTROL_NODES: 172.16.1.101
   CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 100
   DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 100
@@ -67,8 +67,8 @@ kolla_config:
     openstack_release: ocata
     keepalived_virtual_router_id: "66"
     enable_haproxy: yes
-    contrail_api_interface_address: 10.87.65.71
-    kolla_internal_vip_address: 10.87.65.75
-    kolla_external_vip_address: 10.87.65.75
+    contrail_api_interface_address: <srv1.addr>
+    kolla_internal_vip_address:     <srv5.addr>
+    kolla_external_vip_address:     <srv5.addr>
   kolla_passwords:
     keystone_admin_password: contrail123

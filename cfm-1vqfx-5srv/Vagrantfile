@@ -9,6 +9,8 @@ $LOAD_PATH.unshift(libx) unless $LOAD_PATH.include?(libx)
 require 'config'
 cf   = Config.new('topo.yaml')
 puts("Provisioning: #{cf.version}")
+require 'fileedit'
+require 'fileutils'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -66,14 +68,33 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Defaults for config options defined in CONFIG
     # $subnet_mgmt = "10.87.65"
     $subnet_ctrl_data= "172.16.1"
+
+    #
+    # construct the instances.yaml file that contrail can reliably use for
+    # its setup.  This file will be available in /vagrant in the VM.
+    #
+    FileUtils.cp 'instance-templates.yaml', 'instances.yaml'
+    srvCf = Hash.new()
     (1..5).each do |id|
-       srv_name = ( "srv" + id.to_s ).to_sym
+        srv_name = ( "srv" + id.to_s ).to_sym
+        _srvcf = Hash.new()
+        _srvcf[:addr] = cf.get_next_addr
+        _srvcf[:user] = ENV["CF_USER"]
+        _srvcf[:pass] = ENV["CF_PASS"]
+        file_edit("instances.yaml", /<#{srv_name}.addr>/, _srvcf[:addr])
+        file_edit("instances.yaml", /<#{srv_name}.user>/, _srvcf[:user])
+        file_edit("instances.yaml", /<#{srv_name}.pass>/, _srvcf[:pass])
+        srvCf[srv_name] = _srvcf
+    end
+    
+    (1..5).each do |id|
+        srv_name = ( "srv" + id.to_s ).to_sym
         config.vm.define srv_name do |srv|
             srv.vm.box = "qarham/CentOS7.5-350GB"
             srv.vm.hostname = "srv#{id}"
             srv.vm.network "public_network",
               bridge:  "br0",
-              ip:       cf.get_next_addr,
+              ip:       srvCf[srv_name][:addr],
               netmask: "255.255.255.128"
             srv.vm.network 'private_network',
               ip: "#{$subnet_ctrl_data}.#{id+100}",
@@ -88,14 +109,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
               args: cf.get_dns_entries.join(' ')
             srv.vm.provision "shell", path: "../scripts/install-net-tools.sh"
             srv.vm.provision "shell", path: "../scripts/ntp.sh"
+            srv.vm.provision "shell",
+               inline: "sudo ip route add 172.16.0.0/16 via 172.16.1.1"
             srv.vm.provision "file",
               source: "instances.yaml",
               destination: "/home/vagrant/instances.yaml"
-            srv.vm.provision "shell",
-               inline: "sudo ip route add 172.16.0.0/16 via 172.16.1.1"
-        config.vm.provider :virtualbox do |vb|
-            vb.customize ["modifyvm", :id, "--memory", "32768", "--cpus", "4"]
-          end
+
+            config.vm.provider :virtualbox do |vb|
+                vb.customize ["modifyvm", :id,
+                              "--memory", "32768",
+                              "--cpus",   "4"]
+            end
         end
     end
 
