@@ -1,29 +1,6 @@
 #
-# You can use the below IP’s, we have attached to A5s1 server for
-# tracking purposes.
-
-# Subnet: 10.84.14.0
-# Mask: 255.255.255.0
-# GW: 10.84.14.254
-
-# a5s1            |a5s1-vm1.englab.juniper.net      |10.84.14.101   |
-# a5s1            |a5s1-vm2.englab.juniper.net      |10.84.14.102   |
-# a5s1            |a5s1-vm3.englab.juniper.net      |10.84.14.103   |
-# a5s1            |a5s1-vm4.englab.juniper.net      |10.84.14.104   |
-# a5s1            |a5s1-vm5.englab.juniper.net      |10.84.14.105   |
-# a5s1            |a5s1-vm6.englab.juniper.net      |10.84.14.106   |
-# a5s1            |a5s1-vm7.englab.juniper.net      |10.84.14.107   |
-# a5s1            |a5s1-vm8.englab.juniper.net      |10.84.14.108   |
-# a5s1            |a5s1-vm9.englab.juniper.net      |10.84.14.109   |
-# a5s1            |a5s1-vm10.englab.juniper.net     |10.84.14.110   |
-# a5s1            |a5s1-vm11.englab.juniper.net     |10.84.14.111   |
-# a5s1            |a5s1-vm12.englab.juniper.net     |10.84.14.112   |
-# a5s1            |a5s1-vm13.englab.juniper.net     |10.84.14.113   |
-# a5s1            |a5s1-vm14.englab.juniper.net     |10.84.14.114   |
-# a5s1            |a5s1-vm15.englab.juniper.net     |10.84.14.115   |
-# a5s1            |a5s1-vm16.englab.juniper.net     |10.84.14.116   |
-
-
+# Address pool for our VMs.  Basically a list of CIDR prefixes that can be used.
+#
 management-address-pool:
     - 10.84.14.101
     - 10.84.14.102
@@ -31,15 +8,33 @@ management-address-pool:
     - 10.84.14.104/29
     - 10.84.14.112/30
     - 10.84.14.116
+
+#
+# doh!
+#
 default-gw: 10.84.14.254
+
+#
+# List of available DNS servers.
+#
 dns:
-    - 10.84.5.100
     - 172.21.200.60
     - 172.29.131.60
+    - 8.8.8.8
+    - 2001:4860:4860::8888
+    - 8.8.4.4
+    - 2001:4860:4860::8844
 
+#
+# for the internal networks.
+#
 internal-address-pool:
     - 192.168.1.200/16
 
+#
+# Any item that we want passed to the vagrant scripts in the environments.
+# or processed in the Vagrantfile as well.
+#
 environment:
     CF_USER:  root
     CF_PASS:  Juniper123

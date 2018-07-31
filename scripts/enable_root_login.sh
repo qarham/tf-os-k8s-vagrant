@@ -6,10 +6,13 @@ CF_PASS=${CF_PASS:=Juniper123}
 #login as root
 sudo su
 
-sudo sed -e '/PermitRootLogin/ s/^#*/#/' -i /etc/ssh/sshd_config
-sudo sed '/^#PermitRootLogin/a PermitRootLogin yes' -i /etc/ssh/sshd_config
+sudo sed -e 's/^#PermitRootLogin/PermitRootLogin/'                      \
+         -e 's/^PermitRootLogin .*/PermitRootLogin yes/'                \
+         -i /etc/ssh/sshd_config
 sudo sed -i '/^#ListenAddress 0.0.0.0/s/^#//' -i /etc/ssh/sshd_config
-sudo sed '/^#PasswordAuthentication/a PasswordAuthentication yes' -i /etc/ssh/sshd_config
+sudo sed -e 's/^#PasswordAuthentication/PasswordAuthentication/'        \
+         -e 's/^PasswordAuthentication .*/PasswordAuthentication yes/'  \
+         -i /etc/ssh/sshd_config
 
 if ${SYSTEMD:-true}
 then
