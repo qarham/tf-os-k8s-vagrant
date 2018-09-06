@@ -26,7 +26,7 @@ global_configuration:
 #  CONTAINER_REGISTRY: hub.juniper.net/contrail
 #  CONTAINER_REGISTRY_USERNAME: username
 #  CONTAINER_REGISTRY_PASSWORD: password
-  CONTAINER_REGISTRY: ci-repo.englab.juniper.net:5000
+  CONTAINER_REGISTRY: 10.84.5.81:5010
   REGISTRY_PRIVATE_INSECURE: True
 #  CONTAINER_REGISTRY: opencontrailnightly
 
@@ -37,7 +37,7 @@ contrail_configuration:
   UPGRADE_KERNEL: true
 #  CONTRAIL_VERSION: latest          #Comment "5.0-XY" and uncomment this line for DockerHub opencontrailnightly 
 #  CONTRAIL_VERSION: 5.0.0-0.40      #Comment "5.0-XY" and uncomment this line for GA hub.juniper.net
-  CONTRAIL_VERSION: 5.0-51 
+  CONTRAIL_VERSION: 5.0-214
   CONFIG_NODEMGR__DEFAULTS__minimum_diskGB: 2 
   DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: 2
   VROUTER_GATEWAY: 192.168.122.1
