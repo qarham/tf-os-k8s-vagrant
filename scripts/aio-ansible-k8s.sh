@@ -17,8 +17,11 @@ cp /home/vagrant/instances.yaml ${OC_PATH}/config/
 
 cd ${OC_PATH}
 
-sudo ansible-playbook -i inventory/ playbooks/configure_instances.yml
-sudo ansible-playbook -e orchestrator=kubernetes -i inventory/ playbooks/install_contrail.yml
+ansible-playbook -e orchestrator=kubernetes -i inventory/ playbooks/configure_instances.yml
+
+ansible-playbook -e orchestrator=kubernetes -i inventory/ playbooks/install_k8s.yml
+
+ansible-playbook -e orchestrator=kubernetes -i inventory/ playbooks/install_contrail.yml
 
 echo ******* Taint k8s Master for PODs creation ***************
 kubectl taint nodes --all node-role.kubernetes.io/master-
