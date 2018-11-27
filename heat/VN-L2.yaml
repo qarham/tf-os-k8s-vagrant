@@ -1,0 +1,60 @@
+heat_template_version: 2015-04-30
+
+description: >
+  HOT template to creates a virtual networks for Affirmed MCC VNF
+parameters:
+
+  L2VN_name:
+    type: string
+    description: Name of private network to be created
+  L2VN_prefix:
+    type: string
+    description: Private network address prefix
+  L2VN_prefix_len:
+    type: string
+    description: Private network address prefix len
+  forwarding_mode:
+    type: string
+    description: Private network forwarding_mode
+  L2VN_gateway:
+    type: string
+    description: Private network address prefix
+  L2VN_dns:
+    type: string
+    description: Private network address prefix
+  is_enable_dhcp:
+    type: boolean
+    description: enable_dhcp for the VirtualNetwork 
+
+resources:
+  template_NetworkIpam_1:
+    type: OS::ContrailV2::NetworkIpam
+    properties:
+      name: { get_param: L2VN_name }
+
+  template_VirtualNetwork_1:
+    type: OS::ContrailV2::VirtualNetwork
+    depends_on: [ template_NetworkIpam_1 ]
+    properties:
+      name: { get_param: L2VN_name }
+      virtual_network_properties:
+        {
+          virtual_network_properties_forwarding_mode: { get_param: forwarding_mode },
+        }
+      network_ipam_refs: [{ get_resource: template_NetworkIpam_1 }]
+      network_ipam_refs_data:
+        [{
+          network_ipam_refs_data_ipam_subnets:
+            [{
+              network_ipam_refs_data_ipam_subnets_subnet:
+                {
+                  network_ipam_refs_data_ipam_subnets_subnet_ip_prefix: { get_param: L2VN_prefix },
+                  network_ipam_refs_data_ipam_subnets_subnet_ip_prefix_len: { get_param: L2VN_prefix_len },
+                },
+                network_ipam_refs_data_ipam_subnets_default_gateway: { get_param: L2VN_gateway },
+                network_ipam_refs_data_ipam_subnets_enable_dhcp: { get_param: is_enable_dhcp },
+                network_ipam_refs_data_ipam_subnets_dns_server_address: { get_param: L2VN_dns },
+            }]
+         }]
+
+
